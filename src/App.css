@@ -1,38 +1,72 @@
+*{
+
+}
+
 .App {
+  padding: 10px;
   text-align: center;
+  background-color: #171717;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.intro{
+  font-family: 'Cormorant', serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.name{
+  object-fit: contain;
+  font-size: 70px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.highlights{
+  font-family: 'Montserrat', serif;
+  font-weight: lighter;
+  line-height: 22px;
+  font-size: 17px;
+}
+
+.purchase{
+  border-radius: 13px;
+  border: white 2px solid;
+}
+.purchase >a {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.purchase:hover{
+  background-color: white;
+  transition: 1s;
+}
+.purchase:hover > a{
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero{
+  background-color: transparent;
+  margin-top: -45px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  width: 100%;
+  /*box-shadow: 3px 4px 50px -6px rgba(255,255,255,0.48);*/
+}
+
+.saturate { filter: saturate(3); }
+.contrast { filter: contrast(110%); }
+.brightness { filter: brightness(0.75); }
+.sepia { filter: sepia(5%); }
+.huerotate { filter: hue-rotate(25deg); }
+
+.more{
+  height: 100vh;
+}
+
+.background{
+  background-color: white;
+}
+
+.layer{
+  background-color: #746d5b;
+}
+
+.more > img{
+  background-color: transparent;
 }

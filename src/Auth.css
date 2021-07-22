@@ -1,0 +1,26 @@
+
+.login{
+    font-family: 'Montserrat', serif;
+
+    background: rgba(213, 213, 213, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(113, 113, 113, 0.37);
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
+
+    z-index: 20;
+}
+
+.abstract{
+    left: 40%;
+}
+
+.abstract > img{
+    object-fit: cover;
+    width: 100%;
+}
+
+.api{
+    background-color: white;
+    border: white 1px solid;
+}
