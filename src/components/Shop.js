@@ -11,18 +11,9 @@ class Shop extends Component{
     }
 
     componentDidMount() {
-        /*this.setState({loading: true})
-        fetch("")
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            });*/
-        fetch('https://fakestoreapi.com/products')
+        fetch('http://localhost:8080/api/v1/products')
             .then(res=>res.json())
             .then(json=> {
-                console.log(json);
                 this.setState(
                     {
                         isLoading: true,
@@ -35,12 +26,10 @@ class Shop extends Component{
     productCards = () => {
         if ( this.state.products.length !== 0 ) {
             return this.state.products.map( product =>
-
-
                 <div className="card col-md-3 border-0 p-2" key={product.id}>
                     <Link to={`/shop/product/${product.id}`} className="text-decoration-none text-dark">
-                        <div style={{ height: "350px" }} className="align-items-center d-flex">
-                            <img src={ product.image} className=" card-img-top" alt="..." style={{objectFit: "contain", height: "300px"}}/>
+                        <div className="align-items-center d-flex">
+                            <img src={`data:image/png;base64,${product.image }`} className=" card-img-top" style={{objectFit: "contain", height: "300px"}} />
                         </div>
                         <div className="card-body">
                             <h5 className="card-title text-start mt-1 highlights">{ product.title}</h5>
@@ -55,7 +44,7 @@ class Shop extends Component{
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: "white"}}>
-                <div className="row flex-row m-auto justify-content-evenly">
+                <div className="row flex-row m-auto justify-content-start">
                     {this.productCards()}
                 </div>
             </div>
