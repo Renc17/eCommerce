@@ -9,6 +9,7 @@ import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Cart from "./components/Cart";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
               <Switch>
                   <Route path='/' exact component={Welcome}></Route>
                   <Route path='/shop' exact component={Shop}></Route>
+                  <Route path='/shop/cart' exact component={Cart}></Route>
                   <Route path='/shop/product/:id'  component={Product}></Route>
                   <Route exact path='/auth/login'  component={Login}></Route>
                   <Route path='/auth/register'  component={Register}></Route>

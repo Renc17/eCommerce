@@ -18,6 +18,20 @@ function Product({match}) {
       console.log('Product ', product);
     }
 
+    const addToCart = (cart_id, product_id) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                product_id: product_id,
+                quantity: 1,
+                cart_id: cart_id
+            })
+        }
+        fetch(`http://localhost:8080/api/v1/cart`, requestOptions).then(r => window.location.assign("http://localhost:3000/shop"));
+    }
+
+    //TODO : cart_id is user_id
     return (
         <div className="container-fluid d-flex align-items-center" style={{backgroundColor: "white"}}>
             <div className="row align-items-center m-auto col-12">
@@ -39,7 +53,7 @@ function Product({match}) {
                         <h1 className="fw-bolder">{product.title}</h1>
                         <p className="highlights mt-3 col-md-10">{product.description}</p>
                         <h3 className="fw-bolder mb-3 mt-3">$ {product.price}</h3>
-                        <button type="button" className="btn col-md-5 mt-3" style={{border: "2px solid black"}}>Add to Cart</button>
+                        <button onClick={() => { addToCart(1, product.id) }} className="btn col-md-5 mt-3" style={{border: "2px solid black"}}>Add to Cart</button>
                         <div className="highlights mt-5 col-md-10"><i className="bi bi-arrow-counterclockwise p-1"></i> Free 30 day returns</div>
                         <div className="highlights col-md-10"><i className="bi bi-truck p-1"></i> Free Shipping</div>
                     </div>

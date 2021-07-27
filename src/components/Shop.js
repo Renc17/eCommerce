@@ -43,7 +43,7 @@ class Shop extends Component{
 
     render() {
         return (
-            <div className="container-fluid" style={{ backgroundColor: "white"}}>
+            <div className="container-fluid" style={{ backgroundColor: "white", minHeight: "100vh"}}>
                 <div className="row flex-row m-auto justify-content-start">
                     {this.productCards()}
                 </div>
