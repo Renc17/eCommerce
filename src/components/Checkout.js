@@ -35,18 +35,6 @@ class Checkout extends Component {
         event.preventDefault();
     }
 
-    checkout = (user_id, value) => {
-        console.log('A name was submitted: ' + value);
-        /*const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-               value
-            })
-        }
-        fetch(`http://localhost:8080/api/v1/checkout/${user_id}`, requestOptions).then(r => window.location.assign("http://localhost:3000/confirmation"));*/
-    }
-
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: "white", minHeight: "100vh"}}>
