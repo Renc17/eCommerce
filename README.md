@@ -21,6 +21,8 @@ You will also see any lint errors in the console.
   <img src="https://user-images.githubusercontent.com/57152951/127242400-b4ba9c48-0e60-4f69-89b1-7e82907a4054.png" width="100%"/>
 </div>
 
+<img src="https://user-images.githubusercontent.com/57152951/127242400-b4ba9c48-0e60-4f69-89b1-7e82907a4054.png" width="100%"/>
+
 
 Website fetches data from a fake store API. Learn more in here [Canon-API](https://github.com/Renc17/Canon-API) 
 
