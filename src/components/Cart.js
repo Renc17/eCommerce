@@ -24,15 +24,19 @@ class Cart extends Component{
     }
 
     componentDidMount() {
-        // BELOW IS FOR POST
-        /*const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({title: 'React POST Request Example'})
-        };*/
+        console.log(localStorage.getItem('token'))
+        if (!localStorage.getItem('token')){
+            window.location.assign("http://localhost:3000/auth/login");
+        }
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        };
 
-
-        fetch('http://localhost:8080/api/v1/cart')
+        fetch('http://localhost:8080/api/v1/cart', requestOptions)
             .then(res => res.json())
             .then(json => {
                 console.log(json)

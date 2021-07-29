@@ -23,15 +23,23 @@ class Checkout extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
+    // TODO : Configure user id
     handleSubmit(event) {
         console.log('A name was submitted: ' + JSON.stringify(this.state));
+        if (!localStorage.getItem('token')){
+            window.location.assign("http://localhost:3000/auth/login");
+        }
         const value = this.state;
         const requestOptions = {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            redirect: window.location.assign("http://localhost:3000/confirmation"),
             body: JSON.stringify(value)
         }
-        fetch(`http://localhost:8080/api/v1/checkout/1`, requestOptions).then(r => window.location.assign("http://localhost:3000/confirmation"));
+        fetch(`http://localhost:8080/api/v1/checkout/1`, requestOptions);
         event.preventDefault();
     }
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {logDOM} from "@testing-library/react";
 
 
 function Product({match}) {
@@ -19,16 +20,26 @@ function Product({match}) {
     }
 
     const addToCart = (cart_id, product_id) => {
+        console.log(localStorage.getItem('token'))
+        if (!localStorage.getItem('token')){
+            window.location.assign("http://localhost:3000/auth/login");
+        }
         const requestOptions = {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
             body: JSON.stringify({
                 product_id: product_id,
                 quantity: 1,
                 cart_id: cart_id
             })
         }
-        fetch(`http://localhost:8080/api/v1/cart`, requestOptions).then(r => window.location.assign("http://localhost:3000/shop"));
+        fetch(`http://localhost:8080/api/v1/cart`, requestOptions)
+            .then(r => {
+                window.location.assign("http://localhost:3000/shop")
+            });
     }
 
     //TODO : cart_id is user_id

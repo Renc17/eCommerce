@@ -1,5 +1,5 @@
-import './App.css';
-import './Auth.css';
+import './css/App.css';
+import './css/Auth.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import React from "react";
 import Welcome from "./components/Welcome";
