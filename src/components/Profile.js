@@ -82,6 +82,13 @@ class Profile extends Component{
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: "white", minHeight: "100vh"}}>
+                <nav aria-label="breadcrumb" className="mx-5 mb-5">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="/" className="text-dark">Home</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                </nav>
+
                 <div className="row col-md-6 flex-column m-auto justify-content-center ">
                     {this.OrderCards()}
                 </div>
