@@ -20,7 +20,6 @@ class Login extends Component {
     }
 
     async handleSubmit(event) {
-        console.log('A name was submitted: ' + JSON.stringify(this.state));
         const value = this.state;
         const requestOptions = {
             method: 'POST',

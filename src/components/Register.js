@@ -1,12 +1,40 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
 import abstract from "../storage/Abstract-3d-art-background.png";
 
 class Register extends Component {
 
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            firstname: '',
+            lastname: '',
+            email: '',
+            password: '',
+
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value})
+    }
+
+    async handleSubmit(event) {
+        const value = this.state;
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            redirect: window.location.assign("http://localhost:3000/auth/login"),
+            body: JSON.stringify(value)
+        }
+
+        fetch('http://localhost:8080/api/v1/auth/register', requestOptions)
+            .then(res=>{
+                res.json()
+            })
+        event.preventDefault();
     }
 
     render() {
@@ -31,12 +59,12 @@ class Register extends Component {
 
                             <p className="mt-5 fw-bolder">-- OR --</p>
 
-                            <form className="m-3 p-3 row">
-                                <input className="border-bottom border-0 text-white p-2" style={{background: "transparent"}} placeholder="FirstName"/>
-                                <input className="border-bottom border-0 text-white p-2" style={{background: "transparent"}} placeholder="LastName"/>
-                                <input className="border-bottom border-0 text-white p-2" style={{background: "transparent"}} placeholder="Email"/>
-                                <input className="border-bottom border-0 text-white p-2" style={{background: "transparent"}} placeholder="Password"/>
-                                <button type="submit" className="btn btn-dark mt-3">Register</button>
+                            <form className="m-3 p-3 row" onSubmit={this.handleSubmit}>
+                                <input className="border-bottom border-0 text-white p-2" name="firstname" value={this.state.firstname} onChange={this.handleChange}  style={{background: "transparent"}} placeholder="FirstName"/>
+                                <input className="border-bottom border-0 text-white p-2" name="lastname" value={this.state.lastname} onChange={this.handleChange} style={{background: "transparent"}} placeholder="LastName"/>
+                                <input className="border-bottom border-0 text-white p-2" name="email" value={this.state.email} onChange={this.handleChange} style={{background: "transparent"}} placeholder="Email"/>
+                                <input className="border-bottom border-0 text-white p-2 mb-5" name="password" value={this.state.password} onChange={this.handleChange} style={{background: "transparent"}} type="password" placeholder="Password"/>
+                                <input type="submit" value="Submit" className="btn btn-dark col-md-3 m-auto" style={{border: "2px solid black"}} />
                             </form>
                         </div>
                     </div>
