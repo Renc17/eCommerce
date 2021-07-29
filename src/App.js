@@ -12,6 +12,7 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Confirmation from "./components/Confirmation";
+import Profile from "./components/Profile"
 
 function App() {
 
@@ -27,7 +28,8 @@ function App() {
                   <Route path='/confirmation' exact component={Confirmation}></Route>
                   <Route path='/shop/product/:id'  component={Product}></Route>
                   <Route exact path='/auth/login'  component={Login}></Route>
-                  <Route path='/auth/register'  component={Register}></Route>
+                  <Route exact path='/auth/register'  component={Register}></Route>
+                  <Route path='/auth/user'  component={Profile}></Route>
               </Switch>
               <Footer/>
           </div>
