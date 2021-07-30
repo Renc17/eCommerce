@@ -30,3 +30,8 @@ Website fetches data from a fake store API. Learn more in here [Canon-API](https
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+### TODO
+
+Add Login/Register with Google API
