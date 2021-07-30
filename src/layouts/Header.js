@@ -5,11 +5,11 @@ import {Link} from "react-router-dom";
 
 function Header(){
 
-    const ConditionalLink  = localStorage.getItem('token');
-    console.log(ConditionalLink)
+    const isLoggedIn  = localStorage.getItem('token');
+    console.log(isLoggedIn)
 
     const renderButton = () => {
-        if (ConditionalLink) {
+        if (isLoggedIn) {
             return <Link to="/auth/user" className="nav-link text-white p-3 m-2 fw-bold" ><i className="bi bi-person-circle"></i></Link>
         } else {
             return <Link to="/auth/login" className="nav-link text-white p-3 m-2 fw-bold" >LOGIN</Link>
