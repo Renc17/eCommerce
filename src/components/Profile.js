@@ -63,6 +63,8 @@ class Profile extends Component{
 
                 </div>
             )
+        }else {
+            return <h2 className="text-center text-black-50"> No orders yet </h2>
         }
     }
 

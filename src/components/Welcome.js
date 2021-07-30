@@ -15,7 +15,7 @@ function Welcome() {
                 </div>
 
                 <div className="d-flex purchase col-md-3 justify-content-center m-auto ">
-                    <Link to="/shop/product/33" className="text-decoration-none fw-bold p-2 ">Order Now</Link>
+                    <Link to="/shop/product/1" className="text-decoration-none fw-bold p-2 ">Order Now</Link>
                 </div>
 
                 <div className="row highlights mt-5">
