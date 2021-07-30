@@ -23,9 +23,7 @@ class Checkout extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    // TODO : Configure user id
     handleSubmit(event) {
-        console.log('A name was submitted: ' + JSON.stringify(this.state));
         if (!localStorage.getItem('token')){
             window.location.assign("http://localhost:3000/auth/login");
         }
@@ -39,7 +37,7 @@ class Checkout extends Component {
             redirect: window.location.assign("http://localhost:3000/confirmation"),
             body: JSON.stringify(value)
         }
-        fetch(`http://localhost:8080/api/v1/checkout/1`, requestOptions);
+        fetch(`http://localhost:8080/api/v1/checkout`, requestOptions);
         event.preventDefault();
     }
 

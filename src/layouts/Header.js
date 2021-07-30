@@ -2,6 +2,8 @@ import React from "react";
 import logo from "../storage/canon-logo.png";
 import {Link} from "react-router-dom";
 
+//TODO: Make conditional Linking
+
 function Header(){
     return (
         <nav className="navbar navbar-expand-lg navbar-light">

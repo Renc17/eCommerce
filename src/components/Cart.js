@@ -10,21 +10,36 @@ class Cart extends Component{
         }
     }
 
-    emptyCart = (cart_id) => {
-        fetch(`http://localhost:8080/api/v1/cart/${cart_id}`, {method: 'DELETE'}).then(r => window.location.assign("http://localhost:3000/shop"));
-    }
-
-    removeProduct = (cart_id, product_id) => {
+    emptyCart = () => {
+        if (!localStorage.getItem('token')){
+            window.location.assign("http://localhost:3000/auth/login");
+        }
         const requestOptions = {
             method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({product_id: {product_id}})
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        };
+        fetch(`http://localhost:8080/api/v1/cart`, requestOptions).then(r => window.location.assign("http://localhost:3000/shop"));
+    }
+
+    removeProduct = (product_id) => {
+        if (!localStorage.getItem('token')){
+            window.location.assign("http://localhost:3000/auth/login");
         }
-        fetch(`http://localhost:8080/api/v1/cart/${cart_id}`, requestOptions).then(r => window.location.reload());
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            redirect: window.location.reload()
+        }
+        fetch(`http://localhost:8080/api/v1/cart/${product_id}`, requestOptions);
     }
 
     componentDidMount() {
-        console.log(localStorage.getItem('token'))
         if (!localStorage.getItem('token')){
             window.location.assign("http://localhost:3000/auth/login");
         }
@@ -50,7 +65,6 @@ class Cart extends Component{
             })
     }
 
-    // TODO : cart_id is user_id
     productCards = () => {
         if ( this.state.products.length !== 0 ) {
             return this.state.products.map( product =>
@@ -62,7 +76,7 @@ class Cart extends Component{
                         <div className="card-body m-auto text-end">
                             <h5 className="card-title mt-1 fw-bolder highlights">{ product.title}</h5>
                             <div className="highlights text-black-50" style={{ fontSize: "15px"}}>${product.price}</div>
-                            <button onClick={() => { this.removeProduct(1, product.id) }} className="btn col-md-3 mt-3 text-black-50" style={{border: "2px solid black"}}>Remove</button>
+                            <button onClick={() => { this.removeProduct( product.id) }} className="btn col-md-3 mt-3 text-black-50" style={{border: "2px solid black"}}>Remove</button>
                         </div>
                     </Link>
                 </div>

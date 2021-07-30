@@ -22,7 +22,7 @@ class Profile extends Component{
             }
         };
 
-        fetch('http://localhost:8080/api/v1/checkout/1', requestOptions)
+        fetch('http://localhost:8080/api/v1/checkout', requestOptions)
             .then(res => res.json())
             .then(json => {
                 console.log(json)
@@ -35,7 +35,11 @@ class Profile extends Component{
             })
     }
 
-    // TODO : cart_id is user_id
+    logout = () => {
+        localStorage.removeItem('token')
+        window.location.assign("http://localhost:3000")
+    }
+
     OrderCards = () => {
         if ( this.state.orders.length !== 0 ) {
             return this.state.orders.map( order =>
@@ -82,12 +86,19 @@ class Profile extends Component{
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: "white", minHeight: "100vh"}}>
-                <nav aria-label="breadcrumb" className="mx-5 mb-5">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link to="/" className="text-dark">Home</Link></li>
-                        <li className="breadcrumb-item active" aria-current="page">Profile</li>
-                    </ol>
-                </nav>
+                <div className="d-flex justify-content-between">
+                    <nav aria-label="breadcrumb" className="mx-5 mb-5">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><Link to="/" className="text-dark">Home</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">Profile</li>
+                        </ol>
+                    </nav>
+
+                    <div className="mt-2 p-3">
+                        <button onClick={() => { this.logout() }} className="btn btn-dark">Logout</button>
+                    </div>
+                </div>
+
 
                 <div className="row col-md-6 flex-column m-auto justify-content-center ">
                     {this.OrderCards()}

@@ -8,7 +8,8 @@ class Login extends Component {
         super();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            token: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -16,31 +17,37 @@ class Login extends Component {
     }
 
     handleChange(event) {
+        console.log(event.target)
         this.setState({[event.target.name]: event.target.value})
     }
 
     async handleSubmit(event) {
-        const value = this.state;
+        const body = {
+            email: this.state.email,
+            password: this.state.password
+        }
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            redirect: window.location.assign("http://localhost:3000/shop"),
-            body: JSON.stringify(value)
+            body: JSON.stringify(body)
         }
 
+        console.log(requestOptions)
         fetch('http://localhost:8080/api/v1/auth/login', requestOptions)
-            .then(res=>{
-                res.json()
+            .then(res=> res.json())
+            .then(data => {
+                localStorage.setItem('token', data.token)
+                window.location.assign("http://localhost:3000/shop")
             })
-            .then(json=> {
-                localStorage.setItem('token', json.token);
-            })
+
         event.preventDefault();
     }
 
     render() {
+
         return (
             <div className="container min-vh-100">
+                <div> {this.state.token} </div>
                 <div className="row justify-content-center align-items-center">
                     <div className="position-relative mt-5">
                         <div className="position-absolute abstract">
@@ -62,8 +69,8 @@ class Login extends Component {
 
                             <form className="m-3 p-3 row" onSubmit={this.handleSubmit}>
                                 <input className="border-bottom border-0 text-white p-2" name="email" value={this.state.email} onChange={this.handleChange} style={{background: "transparent"}} placeholder="Email"/>
-                                <input className="border-bottom border-0 text-white p-2" name="password" value={this.state.password} onChange={this.handleChange} style={{background: "transparent"}} placeholder="Password"/>
-                                <input type="submit" value="Submit" className="btn btn-dark col-md-5 m-auto" style={{border: "2px solid black"}} />
+                                <input className="border-bottom border-0 text-white p-2 mb-5" name="password" value={this.state.password} onChange={this.handleChange} style={{background: "transparent"}} type="password" placeholder="Password"/>
+                                <input type="submit" value="Submit" className="btn btn-dark col-md-3 m-auto" style={{border: "2px solid black"}} />
                             </form>
                             <Link to="/auth/register" className="text-white text-decoration-none p-3" >Create Account</Link>
                         </div>
